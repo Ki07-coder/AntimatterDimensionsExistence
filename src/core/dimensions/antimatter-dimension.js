@@ -53,7 +53,7 @@ export function antimatterDimensionCommonMultiplier() {
 }
 
 export function getDimensionFinalMultiplierUncached(tier) {
-  if (tier < 1 || tier > 8) throw new Error(`Invalid Antimatter Dimension tier ${tier}`);
+  if (tier < 1 || tier > 9) throw new Error(`Invalid Antimatter Dimension tier ${tier}`);
   if (NormalChallenge(10).isRunning && tier > 6) return DC.D1;
   if (EternityChallenge(11).isRunning) {
     return Currency.infinityPower.value.pow(
@@ -274,7 +274,7 @@ export function maxAll() {
 
   player.requirementChecks.infinity.maxAll = true;
 
-  for (let tier = 1; tier < 9; tier++) {
+  for (let tier = 1; tier < 10; tier++) {
     buyMaxDimension(tier);
   }
 
@@ -334,13 +334,13 @@ export function buyMaxDimension(tier, bulk = Infinity) {
 class AntimatterDimensionState extends DimensionState {
   constructor(tier) {
     super(() => player.dimensions.antimatter, tier);
-    const BASE_COSTS = [null, 10, 100, 1e4, 1e6, 1e9, 1e13, 1e18, 1e24];
+    const BASE_COSTS = [null, 10, 100, 1e4, 1e6, 1e9, 1e13, 1e18, 1e24, 1e50];
     this._baseCost = BASE_COSTS[tier];
-    const BASE_COST_MULTIPLIERS = [null, 1e3, 1e4, 1e5, 1e6, 1e8, 1e10, 1e12, 1e15];
+    const BASE_COST_MULTIPLIERS = [null, 1e3, 1e4, 1e5, 1e6, 1e8, 1e10, 1e12, 1e15, 1e18];
     this._baseCostMultiplier = BASE_COST_MULTIPLIERS[tier];
-    const C6_BASE_COSTS = [null, 10, 100, 100, 500, 2500, 2e4, 2e5, 4e6];
+    const C6_BASE_COSTS = [null, 10, 100, 100, 500, 2500, 2e4, 2e5, 4e6, 8e7];
     this._c6BaseCost = C6_BASE_COSTS[tier];
-    const C6_BASE_COST_MULTIPLIERS = [null, 1e3, 5e3, 1e4, 1.2e4, 1.8e4, 2.6e4, 3.2e4, 4.2e4];
+    const C6_BASE_COST_MULTIPLIERS = [null, 1e3, 5e3, 1e4, 1.2e4, 1.8e4, 2.6e4, 3.2e4, 4.2e4, 6e4];
     this._c6BaseCostMultiplier = C6_BASE_COST_MULTIPLIERS[tier];
   }
 
